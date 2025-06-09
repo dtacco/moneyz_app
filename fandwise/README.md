@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fandwise - Personal Finance Dashboard
+
+Fandwise is a personal finance dashboard application designed to help users track their income, expenses, investments, and overall financial health. It provides a visual overview of financial data to facilitate better financial planning and decision-making.
+
+## Technologies Used
+
+*   **Framework:** [Next.js](https://nextjs.org/) (v14+ with App Router)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Charting:** [Recharts](https://recharts.org/)
+*   **Linting:** ESLint (configured with Next.js defaults)
+
+## Current Features
+
+The application currently includes the following features, primarily using mock data:
+
+*   **Dashboard Overview:**
+    *   Summary of budget status (total budget, spent, remaining).
+    *   Visual spending trends (line chart).
+    *   Top expenses by category.
+*   **Transactions:**
+    *   Review and categorize recent transactions.
+    *   Display transaction details including tags, amounts, and status.
+*   **Accounts Overview:**
+    *   Lists Credit Cards, Depository Accounts (Checking, Savings), and Investment accounts with their balances.
+*   **Investments:**
+    *   Displays current investment balances and portfolio value.
+*   **Categories:**
+    *   Organizes spending by categories (e.g., Rent, Food & Drink).
+    *   Visual representation of top spending categories.
+*   **Recurring Transactions:**
+    *   Lists upcoming recurring transactions (subscriptions, bills).
+*   **Monthly Income Tracking:**
+    *   Shows total income for the month with breakdowns by source.
+    *   Visual progress bar towards income targets.
 
 ## Getting Started
 
-First, run the development server:
+To get a local copy up and running, follow these simple steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+*   Node.js (v18.x or later recommended)
+*   npm or yarn
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation & Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd fandwise
+    ```
+2.  **Install NPM packages:**
+    ```bash
+    npm install
+    ```
+    *(If you prefer yarn, use `yarn install`)*
 
-## Learn More
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    *(Or `yarn dev`)*
 
-To learn more about Next.js, take a look at the following resources:
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*   **`src/app/`**: Main application code using the Next.js App Router.
+    *   **`(pages)/[section]/page.tsx`**: Individual page components for different sections.
+    *   **`components/`**: Reusable React components organized by feature.
+    *   **`lib/`**: Utility functions, type definitions (`types.ts`), and mock data (`mockData.ts`).
+    *   **`layout.tsx`**: Root layout for the application.
+*   **`public/`**: Static assets.
+*   **Configuration files**: `next.config.ts`, `tailwind.config.ts`, `tsconfig.json`, etc.
 
-## Deploy on Vercel
+## Future Enhancements (Potential)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+*   User authentication.
+*   Database integration for persistent data (e.g., Supabase, Firebase, or a custom backend).
+*   Ability to add, edit, and delete transactions, accounts, etc.
+*   More detailed financial reports and analytics.
+*   Integration with financial institutions (e.g., Plaid).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+This README provides a basic overview of the Fandwise project.
