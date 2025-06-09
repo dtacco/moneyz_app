@@ -8,20 +8,22 @@ interface CategorySpending {
 
 interface CategoriesListProps {
   categoriesSpending: CategorySpending[];
+  totalSpentOverall: number; // To calculate percentage
 }
 
-export default function CategoriesList({ categoriesSpending }: CategoriesListProps) {
-  if (categoriesSpending.length === 0) {
-    return <p>No spending data by category available.</p>;
-  }
-
+export default function CategoriesList({ categoriesSpending, totalSpentOverall }: CategoriesListProps) {
   // Sort by spent amount, descending
   const sortedCategories = [...categoriesSpending].sort((a, b) => b.spentAmount - a.spentAmount);
 
   return (
-    <ul className="divide-y divide-gray-200">
+    <ul className="space-y-4">
       {sortedCategories.map(({ category, spentAmount }) => (
-        <CategorySpendingItem key={category.id} category={category} spentAmount={spentAmount} />
+        <CategorySpendingItem
+          key={category.id}
+          category={category}
+          spentAmount={spentAmount}
+          percentage={totalSpentOverall > 0 ? (spentAmount / totalSpentOverall) * 100 : 0}
+        />
       ))}
     </ul>
   );

@@ -1,30 +1,34 @@
 import type { RecurringTransaction } from '@/app/lib/types';
-import { mockCategories, mockAccounts } from '@/app/lib/mockData';
+import { mockCategories, mockAccounts } from '@/app/lib/mockData'; // For category icon & account name
 
-interface RecurringTransactionItemProps {
-  item: RecurringTransaction;
-}
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+};
 
 export default function RecurringTransactionItem({ item }: RecurringTransactionItemProps) {
-  const category = mockCategories.find(c => c.id === item.categoryId)?.name || 'N/A';
+  const category = mockCategories.find(c => c.id === item.categoryId);
   const account = mockAccounts.find(a => a.id === item.accountId)?.name || 'N/A';
+  const icon = category?.icon || '🔄'; // Default recurring icon
 
   return (
-    <li className="flex justify-between items-center p-3 border-b hover:bg-gray-50">
-      <div>
-        <p className="font-semibold">{item.description}</p>
-        <p className="text-sm text-gray-600">
-          Next Due: {new Date(item.nextDueDate).toLocaleDateString()} | Category: {category}
-        </p>
-        <p className="text-xs text-gray-500">
-          Amount: ${item.amount.toFixed(2)} | Frequency: {item.frequency} | Account: {account}
+    <li className="flex items-center p-4 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors border border-neutral-200">
+      <div className="flex-shrink-0 w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center mr-4">
+        <span className="text-xl">{icon}</span>
+      </div>
+      <div className="flex-grow">
+        <p className="font-semibold text-neutral-800">{item.description}</p>
+        <p className="text-sm text-neutral-500">
+          Paid from: {account}
         </p>
       </div>
-      {item.isActive ? (
-        <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Active</span>
-      ) : (
-        <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">Inactive</span>
-      )}
+      <div className="text-right ml-4">
+        <p className="font-semibold text-lg text-neutral-700">
+          ${item.amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+        </p>
+        <p className="text-sm text-neutral-500">
+          Next: {formatDate(item.nextDueDate)}
+        </p>
+      </div>
     </li>
   );
 }

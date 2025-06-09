@@ -3,21 +3,19 @@ import RecurringTransactionItem from './RecurringTransactionItem';
 
 interface RecurringTransactionsListProps {
   transactions: RecurringTransaction[];
-  showOnlyActive?: boolean;
+  // showOnlyActive prop is effectively handled by filtering in RecurringsSection now
 }
 
-export default function RecurringTransactionsList({ transactions, showOnlyActive = true }: RecurringTransactionsListProps) {
-  const itemsToList = showOnlyActive ? transactions.filter(t => t.isActive) : transactions;
-
-  if (itemsToList.length === 0) {
-    return <p>No {showOnlyActive ? 'active ' : ''}recurring transactions found.</p>;
+export default function RecurringTransactionsList({ transactions }: RecurringTransactionsListProps) {
+  if (transactions.length === 0) {
+    return <p className="text-neutral-500 text-center py-4">No active recurring transactions found.</p>;
   }
 
   // Sort by next due date
-  const sortedItems = [...itemsToList].sort((a,b) => new Date(a.nextDueDate).getTime() - new Date(b.nextDueDate).getTime());
+  const sortedItems = [...transactions].sort((a,b) => new Date(a.nextDueDate).getTime() - new Date(b.nextDueDate).getTime());
 
   return (
-    <ul className="divide-y divide-gray-200">
+    <ul className="space-y-4">
       {sortedItems.map((item) => (
         <RecurringTransactionItem key={item.id} item={item} />
       ))}

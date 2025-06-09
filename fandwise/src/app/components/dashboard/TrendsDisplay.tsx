@@ -1,5 +1,5 @@
 import type { TrendDataPoint } from '@/app/lib/types';
-import TrendChart from './TrendChart'; // Import the new chart component
+import TrendChart from './TrendChart';
 
 interface TrendsDisplayProps {
   trends: TrendDataPoint[];
@@ -7,20 +7,11 @@ interface TrendsDisplayProps {
 
 export default function TrendsDisplay({ trends }: TrendsDisplayProps) {
   return (
-    <div className="p-4 border rounded-lg shadow">
-      <h3 className="text-lg font-semibold mb-4">Spending Trends</h3>
-      <TrendChart data={trends} />
-      {/* The list below was for textual representation, now replaced by the chart.
-          It can be removed or kept if detailed textual data alongside the chart is desired.
-          For now, I'm removing it to give prominence to the chart.
-      */}
-      {/*
-      <ul className="mt-2 text-sm">
-        {trends.map(trend => (
-          <li key={trend.date}>{trend.date}: ${trend.value.toLocaleString()}</li>
-        ))}
-      </ul>
-      */}
+    <div className="bg-white p-6 rounded-xl shadow-lg border border-neutral-200">
+      <h3 className="text-xl font-semibold text-neutral-700 mb-4">Spending Trends</h3>
+      <div className="h-72"> {/* Set a specific height for the chart container */}
+        <TrendChart data={trends} />
+      </div>
     </div>
   );
 }

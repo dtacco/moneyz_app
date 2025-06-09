@@ -8,10 +8,11 @@ export default function AccountsOverview() {
   const investmentAccounts = mockAccounts.filter(acc => acc.type === 'investment') as InvestmentAccount[];
 
   return (
-    <div className="p-4 border rounded-lg shadow space-y-6">
-      <h2 className="text-2xl font-bold mb-4">Accounts Overview</h2>
+    <div className="space-y-8">
       <AccountsList title="Credit Cards" accounts={creditCards} />
       <AccountsList title="Depository Accounts" accounts={depositoryAccounts} />
+      {/* Investment accounts might be displayed differently or in a dedicated investments page,
+          but for an overview, they can be listed here too. */}
       <AccountsList title="Investment Accounts" accounts={investmentAccounts} />
     </div>
   );
